@@ -115,7 +115,14 @@ mark{background:#e9b94a88}
 <script>
 /* ========= НАСТРОЙКИ ========= */
 // Чтобы лайки и слова были общими для всех — вставьте сюда конфиг Firebase (см. инструкцию). Иначе данные хранятся только в браузере.
-const FIREBASE_CONFIG = null;
+const FIREBASE_CONFIG = const FIREBASE_CONFIG = {
+  apiKey: "…",
+  authDomain: "…firebaseapp.com",
+  projectId: "…",
+  storageBucket: "…",
+  messagingSenderId: "…",
+  appId: "…"
+};
 const ADMIN_HASH = 'b885349c1d4791658e512da48a7784fdda74b41e0b88edd0aefb444cb5703128';
 const SALT = 'bmvd|';
 
