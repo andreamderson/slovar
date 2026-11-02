@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Словарь BMV D</title>
+<link href="https://fonts.googleapis.com/css2?family=Ruslan+Display&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--parch:#f1e2bd;--parch2:#e6d09c;--ink:#2e1c10;--red:#9b1c1c;--gold:#b8892b;--wood:#2b1a10}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--ink);font-family:'PT Serif',Georgia,serif;background:radial-gradient(circle at 50% 0,#4a2f1c,var(--wood) 70%) fixed}
+h1,h2,h3,.cap,.btn{font-family:'Ruslan Display','PT Serif',serif;font-weight:400}
+.hidden{display:none!important}
+.card{background:linear-gradient(var(--parch),var(--parch2));border:3px double var(--gold);box-shadow:0 10px 40px #000a;border-radius:6px;padding:28px}
+.btn{background:var(--red);color:#f6e7c1;border:2px solid var(--gold);padding:8px 18px;font-size:1.05rem;cursor:pointer;border-radius:4px}
+.btn:hover{filter:brightness(1.2)}.btn.alt{background:transparent;color:var(--red)}
+input,textarea,select{width:100%;padding:9px 11px;margin:4px 0 12px;font:inherit;background:#fbf2d8;border:1px solid #8a6a2e;border-radius:3px;color:var(--ink)}
+label{font-size:.9rem;color:#5a3a1a}
+/* auth */
+#auth{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:16px}
+#auth .card{width:min(420px,100%);text-align:center}
+#auth h1{color:var(--red);font-size:2.3rem;margin:0}
+#auth .sub{font-style:italic;margin:4px 0 20px}
+#auth form{text-align:left}
+.err{color:var(--red);min-height:1.3em;font-size:.9rem}
+.ava{width:34px;height:34px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);background:var(--parch2);display:inline-flex;align-items:center;justify-content:center;font-family:'Ruslan Display';color:var(--red);vertical-align:middle}
+/* app */
+header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:14px 22px;color:#f6e7c1;border-bottom:2px solid var(--gold)}
+#logo{font-family:'Ruslan Display';font-size:1.9rem;cursor:pointer;user-select:none;color:#f1d98c}
+.me{display:flex;align-items:center;gap:10px}
+.tools{max-width:1000px;margin:18px auto 0;padding:0 14px}
+#q{font-size:1.1rem;padding:12px 16px;border:2px solid var(--gold);background:var(--parch)}
+#letters{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px}
+#letters button{background:var(--parch);border:1px solid var(--gold);font-family:'Ruslan Display';color:var(--red);min-width:30px;padding:3px 6px;cursor:pointer;border-radius:3px}
+#letters button.on{background:var(--red);color:#f6e7c1}
+.book{max-width:1000px;margin:10px auto;display:grid;grid-template-columns:1fr 1fr;perspective:1800px;background:linear-gradient(90deg,var(--parch),var(--parch2) 49%,#c9ad6c 50%,var(--parch2) 51%,var(--parch));border:3px double var(--gold);box-shadow:0 14px 50px #000c;border-radius:8px;min-height:480px}
+.book.one{grid-template-columns:1fr;background:var(--parch)}
+.pg{padding:26px 30px;position:relative}
+.pg.r{transform-origin:left center}.pg.l{transform-origin:right center}
+.book.next .pg.r,.book.next .pg.l{animation:nx .55s ease}
+.book.prev .pg.r,.book.prev .pg.l{animation:pv .55s ease}
+@keyframes nx{from{transform:rotateY(-70deg);opacity:.15}to{transform:none;opacity:1}}
+@keyframes pv{from{transform:rotateY(70deg);opacity:.15}to{transform:none;opacity:1}}
+.entry{margin-bottom:22px;padding-bottom:14px;border-bottom:1px dashed #a88740}
+.entry h3{margin:0;font-size:1.5rem;color:var(--ink)}
+.cap{color:var(--red);font-size:2.1rem;margin-right:1px}
+.pos{font-style:italic;color:#6a4a22;font-size:.85rem}
+.entry p{margin:6px 0;line-height:1.5}.ex{font-style:italic;color:#5a3a1a}
+mark{background:#e9b94a88}
+.like{position:relative;background:none;border:1px solid var(--gold);border-radius:20px;padding:3px 12px;cursor:pointer;color:var(--red);font:inherit}
+.like.on{background:var(--red);color:#f6e7c1}
+.tip{display:none;position:absolute;left:0;bottom:130%;z-index:5;background:var(--ink);color:#f6e7c1;padding:7px 11px;border-radius:5px;font-size:.85rem;white-space:pre;max-width:260px;text-align:left}
+.like:hover .tip,.like:focus .tip{display:block}
+.nav{max-width:1000px;margin:0 auto 30px;display:flex;justify-content:center;align-items:center;gap:20px;color:#f1d98c;font-family:'Ruslan Display'}
+.empty{text-align:center;padding:60px 10px;font-style:italic}
+/* admin */
+#adm{position:fixed;inset:0;background:#000b;z-index:20;display:flex;align-items:center;justify-content:center;padding:12px}
+#adm .card{width:min(640px,100%);max-height:94vh;overflow:auto}
+#adm h2{color:var(--red);margin-top:0}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+@media(max-width:700px){.book{grid-template-columns:1fr;background:var(--parch)}.pg{padding:20px}}
+</style>
+</head>
+<body>
+
+<!-- РЕГИСТРАЦИЯ -->
+<section id="auth" class="hidden">
+ <div class="card">
+  <h1>Словарь BMV D</h1>
+  <div class="sub">Назови себя, путниче</div>
+  <form id="af">
+   <label>Ваше имя или ник *</label><input id="an" maxlength="24" autocomplete="off" required>
+   <label>Фото (необязательно)</label><input id="ap" type="file" accept="image/*">
+   <label>Пароль *</label><input id="apw" type="password" minlength="3" required>
+   <div class="err" id="ae"></div>
+   <button class="btn" style="width:100%">Войти в книгу</button>
+  </form>
+ </div>
+</section>
+
+<!-- ПРИЛОЖЕНИЕ -->
+<section id="app" class="hidden">
+ <header>
+  <div id="logo" title="Словарь BMV D">☦ Словарь BMV D</div>
+  <div class="me"><span id="mea"></span><b id="men"></b><button class="btn alt" id="out" style="color:#f6e7c1">Выйти</button></div>
+ </header>
+ <div class="tools">
+  <input id="q" placeholder="Искать слово или его значение…" autocomplete="off">
+  <div id="letters"></div>
+ </div>
+ <div class="book" id="book"></div>
+ <div class="nav"><button class="btn" id="pv">← Назад</button><span id="pn"></span><button class="btn" id="nx">Вперёд →</button></div>
+</section>
+
+<!-- АДМИНКА -->
+<section id="adm" class="hidden">
+ <div class="card">
+  <h2>Палата писца</h2>
+  <label>Править существующее слово</label>
+  <select id="aw"></select>
+  <label>Слово *</label><input id="fw" maxlength="60">
+  <label>Часть речи</label><input id="fp" placeholder="сущ., глаг., прил.…">
+  <label>Описание *</label><textarea id="fd" rows="4"></textarea>
+  <label>Пример употребления</label><input id="fe">
+  <div class="err" id="fer"></div>
+  <div class="row">
+   <button class="btn" id="fs">Сохранить</button>
+   <button class="btn alt" id="fn">Новое слово</button>
+   <button class="btn alt" id="fx">Удалить</button>
+   <button class="btn alt" id="fc" style="margin-left:auto">Закрыть</button>
+  </div>
+ </div>
+</section>
+
+<script>
+/* ========= НАСТРОЙКИ ========= */
+// Чтобы лайки и слова были общими для всех — вставьте сюда конфиг Firebase (см. инструкцию). Иначе данные хранятся только в браузере.
+const FIREBASE_CONFIG = null;
+const ADMIN_HASH = 'b885349c1d4791658e512da48a7784fdda74b41e0b88edd0aefb444cb5703128';
+const SALT = 'bmvd|';
+
+/* ========= ДАННЫЕ ========= */
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const jget = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) ?? d } catch { return d } };
+const sha = async t => [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t)))].map(b => b.toString(16).padStart(2, '0')).join('');
+
+const SEED = [
+ {id:'1',w:'Азъ',p:'мест.',d:'Я. Первая буква кириллической азбуки, а также местоимение первого лица.',e:'Азъ есмь путник.'},
+ {id:'2',w:'Буки',p:'сущ.',d:'Название второй буквы славянской азбуки; от него происходит слово «буква».',e:'Азъ, буки, веди — начало учения.'},
+ {id:'3',w:'Ведати',p:'глаг.',d:'Знать, ведать, быть осведомлённым. От него — «ведомость», «невежда».',e:'Не ведаю, о чём молвишь.'},
+ {id:'4',w:'Червлёный',p:'прил.',d:'Тёмно-красный, багряный. Цвет княжеских щитов и одежд.',e:'Червлёные щиты дружины.'},
+ {id:'5',w:'Живот',p:'сущ.',d:'В древности — жизнь, достояние. Слово «живот» в значении «брюхо» появилось позднее.',e:'Не щадя живота своего.'}
+];
+let S = jget('bmvd_data', null) || {words: SEED, likes: {}};
+let users = jget('bmvd_users', {});
+let me = jget('bmvd_session', null);
+let cloud = null, isAdmin = false;
+let sp = 0, query = '', letter = '';
+
+function save(){
+ localStorage.setItem('bmvd_data', JSON.stringify(S));
+ if (cloud) cloud.set(S).catch(console.error);
+}
+function initCloud(){
+ if (!FIREBASE_CONFIG) return;
+ const base = 'https://www.gstatic.com/firebasejs/10.12.2/';
+ const load = s => new Promise(r => { const t = document.createElement('script'); t.src = base + s; t.onload = r; document.head.appendChild(t); });
+ load('firebase-app-compat.js').then(() => load('firebase-firestore-compat.js')).then(() => {
+  firebase.initializeApp(FIREBASE_CONFIG);
+  cloud = firebase.firestore().doc('dict/main');
+  cloud.onSnapshot(s => {
+   if (s.exists) { S = s.data(); S.words = S.words || []; S.likes = S.likes || {}; localStorage.setItem('bmvd_data', JSON.stringify(S)); if (me) renderBook(); }
+   else cloud.set(S);
+  });
+ });
+}
+
+/* ========= РЕГИСТРАЦИЯ ========= */
+function avaHTML(u){ return u && u.photo ? `<img class="ava" src="${u.photo}" alt="">` : `<span class="ava">${esc((u?.name || '?')[0].toUpperCase())}</span>`; }
+function readPhoto(f){
+ return new Promise(res => {
+  if (!f) return res('');
+  const img = new Image(), fr = new FileReader();
+  fr.onload = () => { img.onload = () => {
+   const c = document.createElement('canvas'), n = 96; c.width = c.height = n;
+   const m = Math.min(img.width, img.height);
+   c.getContext('2d').drawImage(img, (img.width - m) / 2, (img.height - m) / 2, m, m, 0, 0, n, n);
+   res(c.toDataURL('image/jpeg', .8)); }; img.onerror = () => res(''); img.src = fr.result; };
+  fr.readAsDataURL(f);
+ });
+}
+$('af').onsubmit = async e => {
+ e.preventDefault();
+ const name = $('an').value.trim(), pw = $('apw').value, key = name.toLowerCase();
+ if (!name) return $('ae').textContent = 'Укажите имя или ник.';
+ const h = await sha(SALT + pw);
+ if (users[key]) {
+  if (users[key].h !== h) return $('ae').textContent = 'Неверный пароль для этого имени.';
+ } else {
+  users[key] = {name, h, photo: await readPhoto($('ap').files[0])};
+  localStorage.setItem('bmvd_users', JSON.stringify(users));
+ }
+ me = key; localStorage.setItem('bmvd_session', JSON.stringify(me));
+ $('af').reset(); $('ae').textContent = ''; start();
+};
+$('out').onclick = () => { me = null; localStorage.removeItem('bmvd_session'); start(); };
+
+/* ========= КНИГА ========= */
+const perPage = 3;
+const hl = t => { t = esc(t); if (!query) return t; const r = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); return t.replace(new RegExp('(' + esc(r) + ')', 'gi'), '<mark>$1</mark>'); };
+function filtered(){
+ const q = query.toLowerCase();
+ return S.words.filter(x => (!letter || x.w[0].toLowerCase() === letter) && (!q || (x.w + ' ' + x.d + ' ' + (x.e || '')).toLowerCase().includes(q)))
+  .sort((a, b) => a.w.localeCompare(b.w, 'ru'));
+}
+function entry(x){
+ const L = S.likes[x.id] || [], mine = L.includes(me);
+ const names = L.map(k => users[k]?.name || k);
+ const w = x.w; 
+ return `<div class="entry"><h3><span class="cap">${hl(w[0])}</span>${hl(w.slice(1))}</h3>
+ ${x.p ? `<div class="pos">${esc(x.p)}</div>` : ''}<p>${hl(x.d)}</p>${x.e ? `<p class="ex">«${hl(x.e)}»</p>` : ''}
+ <button class="like ${mine ? 'on' : ''}" data-id="${x.id}">♥ ${L.length}<span class="tip">${names.length ? esc(names.join('\n')) : 'Пока никто не оценил'}</span></button></div>`;
+}
+function renderLetters(){
+ const ls = [...new Set(S.words.map(x => x.w[0].toLowerCase()))].sort((a, b) => a.localeCompare(b, 'ru'));
+ $('letters').innerHTML = `<button data-l="" class="${letter ? '' : 'on'}">Все</button>` + ls.map(l => `<button data-l="${l}" class="${letter === l ? 'on' : ''}">${l.toUpperCase()}</button>`).join('');
+}
+function renderBook(dir){
+ renderLetters();
+ const one = innerWidth < 700, pages = one ? 1 : 2, step = perPage * pages, list = filtered();
+ const total = Math.max(1, Math.ceil(list.length / step));
+ sp = Math.min(Math.max(sp, 0), total - 1);
+ const part = list.slice(sp * step, sp * step + step), b = $('book');
+ b.className = 'book' + (one ? ' one' : '');
+ if (!list.length) b.innerHTML = '<div class="empty" style="grid-column:1/-1">В книге нет такого слова…</div>';
+ else b.innerHTML = `<div class="pg l">${part.slice(0, perPage).map(entry).join('')}</div>` + (one ? '' : `<div class="pg r">${part.slice(perPage).map(entry).join('')}</div>`);
+ if (dir) { void b.offsetWidth; b.classList.add(dir); }
+ $('pn').textContent = `лист ${sp + 1} из ${total}`;
+ $('pv').disabled = sp === 0; $('nx').disabled = sp >= total - 1;
+}
+const go = d => { sp += d; renderBook(d > 0 ? 'next' : 'prev'); };
+$('nx').onclick = () => go(1); $('pv').onclick = () => go(-1);
+addEventListener('keydown', e => { if (!me || e.target.matches('input,textarea,select')) return; if (e.key === 'ArrowRight') go(1); if (e.key === 'ArrowLeft') go(-1); });
+addEventListener('resize', () => me && renderBook());
+$('q').oninput = e => { query = e.target.value.trim(); sp = 0; renderBook(); };
+$('letters').onclick = e => { const l = e.target.dataset.l; if (l === undefined) return; letter = l; sp = 0; renderBook(); };
+$('book').onclick = e => {
+ const b = e.target.closest('.like'); if (!b) return;
+ const id = b.dataset.id, L = S.likes[id] = S.likes[id] || [], i = L.indexOf(me);
+ i < 0 ? L.push(me) : L.splice(i, 1);
+ save(); renderBook();
+};
+
+/* ========= АДМИНКА ========= */
+let clicks = 0, ct;
+$('logo').onclick = async () => {
+ clearTimeout(ct); ct = setTimeout(() => clicks = 0, 2500);
+ if (++clicks < 7) return; clicks = 0;
+ if (!isAdmin) {
+  const p = prompt('Слово тайное:');
+  if (!p || await sha(SALT + p) !== ADMIN_HASH) return;
+  isAdmin = true;
+ }
+ openAdm();
+};
+let cur = null;
+function fillSel(){ $('aw').innerHTML = '<option value="">— выбрать слово —</option>' + [...S.words].sort((a, b) => a.w.localeCompare(b.w, 'ru')).map(x => `<option value="${x.id}">${esc(x.w)}</option>`).join(''); $('aw').value = cur?.id || ''; }
+function setForm(x){ cur = x; $('fw').value = x?.w || ''; $('fp').value = x?.p || ''; $('fd').value = x?.d || ''; $('fe').value = x?.e || ''; $('fer').textContent = ''; fillSel(); }
+function openAdm(){ setForm(null); $('adm').classList.remove('hidden'); }
+$('aw').onchange = e => setForm(S.words.find(x => x.id === e.target.value) || null);
+$('fn').onclick = () => setForm(null);
+$('fc').onclick = () => $('adm').classList.add('hidden');
+$('fs').onclick = () => {
+ const w = $('fw').value.trim(), d = $('fd').value.trim();
+ if (!w || !d) return $('fer').textContent = 'Заполните слово и описание.';
+ const data = {w, p: $('fp').value.trim(), d, e: $('fe').value.trim()};
+ if (cur) Object.assign(cur, data); else { cur = {id: Date.now().toString(36), ...data}; S.words.push(cur); }
+ save(); fillSel(); renderBook(); $('fer').textContent = 'Записано в книгу ✓';
+};
+$('fx').onclick = () => {
+ if (!cur || !confirm('Удалить слово «' + cur.w + '»?')) return;
+ S.words = S.words.filter(x => x !== cur); delete S.likes[cur.id];
+ save(); setForm(null); renderBook();
+};
+
+/* ========= СТАРТ ========= */
+function start(){
+ const ok = me && users[me];
+ $('auth').classList.toggle('hidden', !!ok); $('app').classList.toggle('hidden', !ok);
+ if (!ok) { me = null; return; }
+ $('mea').innerHTML = avaHTML(users[me]); $('men').textContent = users[me].name;
+ renderBook();
+}
+initCloud(); start();
+</script>
+</body>
+</html>
