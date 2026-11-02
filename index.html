@@ -8,61 +8,72 @@
 <style>
 :root{--parch:#f1e2bd;--parch2:#e6d09c;--ink:#2e1c10;--red:#9b1c1c;--gold:#b8892b;--wood:#2b1a10}
 *{box-sizing:border-box}
-body{margin:0;min-height:100vh;color:var(--ink);font-family:'PT Serif',Georgia,serif;background:radial-gradient(circle at 50% 0,#4a2f1c,var(--wood) 70%) fixed}
+html,body{height:100%}
+body{margin:0;overflow:hidden;color:var(--ink);font-family:'PT Serif',Georgia,serif;background:radial-gradient(circle at 50% 0,#4a2f1c,var(--wood) 70%) fixed}
 h1,h2,h3,.cap,.btn{font-family:'Ruslan Display','PT Serif',serif;font-weight:400}
 .hidden{display:none!important}
 .card{background:linear-gradient(var(--parch),var(--parch2));border:3px double var(--gold);box-shadow:0 10px 40px #000a;border-radius:6px;padding:28px}
-.btn{background:var(--red);color:#f6e7c1;border:2px solid var(--gold);padding:8px 18px;font-size:1.05rem;cursor:pointer;border-radius:4px}
-.btn:hover{filter:brightness(1.2)}.btn.alt{background:transparent;color:var(--red)}
-input,textarea,select{width:100%;padding:9px 11px;margin:4px 0 12px;font:inherit;background:#fbf2d8;border:1px solid #8a6a2e;border-radius:3px;color:var(--ink)}
+.btn{background:var(--red);color:#f6e7c1;border:2px solid var(--gold);padding:7px 16px;font-size:1.05rem;cursor:pointer;border-radius:4px}
+.btn:hover{filter:brightness(1.2)}.btn:disabled{opacity:.4;cursor:default}.btn.alt{background:transparent;color:var(--red)}
+input,textarea,select{width:100%;padding:9px 11px;margin:4px 0 10px;font:inherit;background:#fbf2d8;border:1px solid #8a6a2e;border-radius:3px;color:var(--ink)}
+textarea{resize:vertical}
 label{font-size:.9rem;color:#5a3a1a}
 /* auth */
-#auth{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:16px}
+#auth{display:flex;align-items:center;justify-content:center;height:100dvh;padding:16px;overflow:auto}
 #auth .card{width:min(420px,100%);text-align:center}
 #auth h1{color:var(--red);font-size:2.3rem;margin:0}
 #auth .sub{font-style:italic;margin:4px 0 20px}
 #auth form{text-align:left}
 .err{color:var(--red);min-height:1.3em;font-size:.9rem}
 .ava{width:34px;height:34px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);background:var(--parch2);display:inline-flex;align-items:center;justify-content:center;font-family:'Ruslan Display';color:var(--red);vertical-align:middle}
-/* app */
-header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:14px 22px;color:#f6e7c1;border-bottom:2px solid var(--gold)}
-#logo{font-family:'Ruslan Display';font-size:1.9rem;cursor:pointer;user-select:none;color:#f1d98c}
+/* app: всё на одном экране */
+#app{display:flex;flex-direction:column;height:100dvh}
+header{flex:none;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;padding:8px 22px;color:#f6e7c1;border-bottom:2px solid var(--gold)}
+#logo{font-family:'Ruslan Display';font-size:1.6rem;cursor:pointer;user-select:none;color:#f1d98c}
 .me{display:flex;align-items:center;gap:10px}
-.tools{max-width:1000px;margin:18px auto 0;padding:0 14px}
-#q{font-size:1.1rem;padding:12px 16px;border:2px solid var(--gold);background:var(--parch)}
-#letters{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px}
-#letters button{background:var(--parch);border:1px solid var(--gold);font-family:'Ruslan Display';color:var(--red);min-width:30px;padding:3px 6px;cursor:pointer;border-radius:3px}
+#cs{font-size:.8rem}
+.tools{flex:none;width:100%;max-width:1000px;margin:10px auto 0;padding:0 14px}
+.trow{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.tabs{display:flex;gap:8px}
+.tabs button{font-family:'Ruslan Display';font-size:1.05rem;background:var(--parch);color:var(--red);border:2px solid var(--gold);padding:5px 16px;cursor:pointer;border-radius:4px}
+.tabs button.on{background:var(--red);color:#f6e7c1}
+#q{flex:1;min-width:180px;margin:0;font-size:1.05rem;padding:8px 14px;border:2px solid var(--gold);background:var(--parch)}
+#letters{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+#letters button{background:var(--parch);border:1px solid var(--gold);font-family:'Ruslan Display';color:var(--red);min-width:30px;padding:2px 6px;cursor:pointer;border-radius:3px}
 #letters button.on{background:var(--red);color:#f6e7c1}
-.book{max-width:1000px;margin:10px auto;display:grid;grid-template-columns:1fr 1fr;perspective:1800px;background:linear-gradient(90deg,var(--parch),var(--parch2) 49%,#c9ad6c 50%,var(--parch2) 51%,var(--parch));border:3px double var(--gold);box-shadow:0 14px 50px #000c;border-radius:8px;min-height:480px}
+.book{flex:1;min-height:0;width:calc(100% - 28px);max-width:1000px;margin:8px auto;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:minmax(0,1fr);perspective:1800px;overflow:hidden;background:linear-gradient(90deg,var(--parch),var(--parch2) 49%,#c9ad6c 50%,var(--parch2) 51%,var(--parch));border:3px double var(--gold);box-shadow:0 14px 50px #000c;border-radius:8px}
 .book.one{grid-template-columns:1fr;background:var(--parch)}
-.pg{padding:26px 30px;position:relative}
+.pg{padding:22px 30px 10px;position:relative;overflow-y:auto;min-height:0}
 .pg.r{transform-origin:left center}.pg.l{transform-origin:right center}
-.book.next .pg.r,.book.next .pg.l{animation:nx .55s ease}
-.book.prev .pg.r,.book.prev .pg.l{animation:pv .55s ease}
+.book.next .pg{animation:nx .55s ease}
+.book.prev .pg{animation:pv .55s ease}
 @keyframes nx{from{transform:rotateY(-70deg);opacity:.15}to{transform:none;opacity:1}}
 @keyframes pv{from{transform:rotateY(70deg);opacity:.15}to{transform:none;opacity:1}}
-.entry{margin-bottom:22px;padding-bottom:14px;border-bottom:1px dashed #a88740}
-.entry h3{margin:0;font-size:1.5rem;color:var(--ink)}
-.cap{color:var(--red);font-size:2.1rem;margin-right:1px}
+.entry{margin-bottom:16px;padding-bottom:10px;border-bottom:1px dashed #a88740}
+.entry h3{margin:0;font-size:1.45rem}
+.cap{color:var(--red);font-size:2rem;margin-right:1px}
 .pos{font-style:italic;color:#6a4a22;font-size:.85rem}
-.entry p{margin:6px 0;line-height:1.5}.ex{font-style:italic;color:#5a3a1a}
+.entry p{margin:5px 0;line-height:1.45}
+.entry p.d{white-space:pre-line}
+.ex{font-style:italic;color:#5a3a1a}
 mark{background:#e9b94a88}
-.like{position:relative;background:none;border:1px solid var(--gold);border-radius:20px;padding:3px 12px;cursor:pointer;color:var(--red);font:inherit}
+.acts{display:flex;gap:6px;align-items:center;margin-top:4px}
+.like{position:relative;background:none;border:1px solid var(--gold);border-radius:20px;padding:2px 12px;cursor:pointer;color:var(--red);font:inherit}
 .like.on{background:var(--red);color:#f6e7c1}
+.mini{background:none;border:1px solid var(--gold);border-radius:4px;cursor:pointer;padding:2px 9px;color:var(--ink);font:inherit}
+.mini:hover{background:var(--red);color:#f6e7c1}
 .tip{display:none;position:absolute;left:0;bottom:130%;z-index:5;background:var(--ink);color:#f6e7c1;padding:7px 11px;border-radius:5px;font-size:.85rem;white-space:pre;max-width:260px;text-align:left}
 .like:hover .tip,.like:focus .tip{display:block}
-.nav{max-width:1000px;margin:0 auto 30px;display:flex;justify-content:center;align-items:center;gap:20px;color:#f1d98c;font-family:'Ruslan Display'}
-.empty{text-align:center;padding:60px 10px;font-style:italic}
-.tabs{display:flex;gap:8px;margin-bottom:10px}
-.tabs button{font-family:'Ruslan Display';font-size:1.1rem;background:var(--parch);color:var(--red);border:2px solid var(--gold);padding:6px 18px;cursor:pointer;border-radius:4px}
-.tabs button.on{background:var(--red);color:#f6e7c1}
-#cs{font-size:.8rem}
-/* admin */
+.edit{background:#0001;padding:10px;border-radius:5px}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.nav{flex:none;display:flex;justify-content:center;align-items:center;gap:20px;color:#f1d98c;font-family:'Ruslan Display';margin:0 auto 10px}
+.empty{text-align:center;padding:60px 10px;font-style:italic;grid-column:1/-1}
+#meas{position:absolute;left:-9999px;top:0;visibility:hidden;pointer-events:none}
+/* admin modal */
 #adm{position:fixed;inset:0;background:#000b;z-index:20;display:flex;align-items:center;justify-content:center;padding:12px}
 #adm .card{width:min(640px,100%);max-height:94vh;overflow:auto}
 #adm h2{color:var(--red);margin-top:0}
-.row{display:flex;gap:8px;flex-wrap:wrap}
-@media(max-width:700px){.book{grid-template-columns:1fr;background:var(--parch)}.pg{padding:20px}}
+@media(max-width:700px){.book{grid-template-columns:1fr;background:var(--parch)}.pg{padding:16px}}
 </style>
 </head>
 <body>
@@ -77,7 +88,7 @@ mark{background:#e9b94a88}
    <label>Фото (необязательно)</label><input id="ap" type="file" accept="image/*">
    <label>Пароль *</label><input id="apw" type="password" minlength="3" required>
    <div class="err" id="ae"></div>
-   <button class="btn" style="width:100%">Войти в книгу</button>
+   <button class="btn" id="asb" style="width:100%">Войти в книгу</button>
   </form>
  </div>
 </section>
@@ -86,16 +97,23 @@ mark{background:#e9b94a88}
 <section id="app" class="hidden">
  <header>
   <div id="logo" title="Словарь BMV D">☦ Словарь BMV D</div>
-  <div class="me"><span id="cs"></span><span id="mea"></span><b id="men"></b><button class="btn alt" id="out" style="color:#f6e7c1">Выйти</button></div>
+  <div class="me">
+   <button class="btn alt hidden" id="addw" style="color:#f6e7c1">＋ Слово</button>
+   <span id="cs"></span><span id="mea"></span><b id="men" style="color:#f6e7c1"></b>
+   <button class="btn alt" id="out" style="color:#f6e7c1">Выйти</button>
+  </div>
  </header>
  <div class="tools">
-  <div class="tabs" id="tabs"><button data-t="all" class="on">Словарь</button><button data-t="fav">★ Избранное (<span id="fc">0</span>)</button></div>
-  <input id="q" placeholder="Искать слово или его значение…" autocomplete="off">
+  <div class="trow">
+   <div class="tabs" id="tabs"><button data-t="all" class="on">Словарь</button><button data-t="fav">★ Избранное (<span id="fc">0</span>)</button></div>
+   <input id="q" placeholder="Искать слово или его значение…" autocomplete="off">
+  </div>
   <div id="letters"></div>
  </div>
  <div class="book" id="book"></div>
  <div class="nav"><button class="btn" id="pv">← Назад</button><span id="pn"></span><button class="btn" id="nx">Вперёд →</button></div>
 </section>
+<div id="meas"></div>
 
 <!-- АДМИНКА -->
 <section id="adm" class="hidden">
@@ -105,21 +123,22 @@ mark{background:#e9b94a88}
   <select id="aw"></select>
   <label>Слово *</label><input id="fw" maxlength="60">
   <label>Часть речи</label><input id="fp" placeholder="сущ., глаг., прил.…">
-  <label>Описание *</label><textarea id="fd" rows="4"></textarea>
+  <label>Описание * (Enter — новая строка)</label><textarea id="fd" rows="5"></textarea>
   <label>Пример употребления</label><input id="fe">
   <div class="err" id="fer"></div>
   <div class="row">
    <button class="btn" id="fs">Сохранить</button>
    <button class="btn alt" id="fn">Новое слово</button>
    <button class="btn alt" id="fx">Удалить</button>
-   <button class="btn alt" id="fc" style="margin-left:auto">Закрыть</button>
+   <button class="btn alt" id="fq">Выйти из режима писца</button>
+   <button class="btn alt" id="fclose" style="margin-left:auto">Закрыть</button>
   </div>
  </div>
 </section>
 
 <script>
 /* ========= НАСТРОЙКИ ========= */
-// Чтобы лайки и слова были общими для всех — вставьте сюда конфиг Firebase (см. инструкцию). Иначе данные хранятся только в браузере.
+// Вставьте сюда конфиг Firebase вместо null, чтобы слова, лайки и аккаунты были общими для всех.
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const FIREBASE_CONFIG = {
   apiKey: "AIzaSyDrI33-Cp0jNNvCl5o8IkNANKKeK0R-c4o",
@@ -149,13 +168,15 @@ const SEED = [
 let S = jget('bmvd_data', null) || {words: SEED, likes: {}};
 let users = jget('bmvd_users', {});
 let me = jget('bmvd_session', null);
-let cloud = null, isAdmin = false;
+let isAdmin = localStorage.getItem('bmvd_admin') === ADMIN_HASH;
+let fsdb = null, cloud = null, editId = null;
 let sp = 0, query = '', letter = '', tab = 'all';
+let resolveCloud; const cloudReady = new Promise(r => resolveCloud = r);
+const myName = () => users[me]?.name;
+const isFav = x => (S.likes[x.id] || []).includes(myName());
 
-function save(){
- localStorage.setItem('bmvd_data', JSON.stringify(S));
- if (cloud) cloud.set(S).catch(e => setCs('err', e.message));
-}
+function saveLocal(){ localStorage.setItem('bmvd_data', JSON.stringify(S)); }
+function save(){ saveLocal(); if (cloud) cloud.set(S).catch(e => setCs('err', e.message)); }
 function setCs(k, m){
  const el = $('cs'); if (!el) return;
  el.textContent = k === 'ok' ? '☁ общий режим' : k === 'err' ? '⚠ нет связи с базой' : '💾 локальный режим';
@@ -163,16 +184,21 @@ function setCs(k, m){
  if (k === 'err') console.error('Firebase:', m);
 }
 function initCloud(){
- if (!FIREBASE_CONFIG || String(FIREBASE_CONFIG.apiKey || '').includes('…')) return setCs('local');
+ if (!FIREBASE_CONFIG || String(FIREBASE_CONFIG.apiKey || '').includes('…')) { setCs('local'); return resolveCloud(); }
  const base = 'https://www.gstatic.com/firebasejs/10.12.2/';
- const load = s => new Promise(r => { const t = document.createElement('script'); t.src = base + s; t.onload = r; document.head.appendChild(t); });
+ const load = s => new Promise(r => { const t = document.createElement('script'); t.src = base + s; t.onload = r; t.onerror = r; document.head.appendChild(t); });
  load('firebase-app-compat.js').then(() => load('firebase-firestore-compat.js')).then(() => {
-  firebase.initializeApp(FIREBASE_CONFIG);
-  cloud = firebase.firestore().doc('dict/main');
-  cloud.onSnapshot(s => {
-   setCs('ok'); if (s.exists) { S = s.data(); S.words = S.words || []; S.likes = S.likes || {}; localStorage.setItem('bmvd_data', JSON.stringify(S)); if (me) renderBook(); }
-   else cloud.set(S);
-  }, err => setCs('err', err.message));
+  try {
+   firebase.initializeApp(FIREBASE_CONFIG);
+   fsdb = firebase.firestore(); cloud = fsdb.doc('dict/main');
+   cloud.onSnapshot(s => {
+    setCs('ok');
+    if (s.exists) { S = s.data(); S.words = S.words || []; S.likes = S.likes || {}; saveLocal(); if (me && !editId) renderBook(); }
+    else cloud.set(S);
+   }, err => setCs('err', err.message));
+   if (me && users[me]) { const ref = fsdb.collection('users').doc(me); ref.get().then(d => { if (!d.exists) ref.set(users[me]); }).catch(() => {}); }
+  } catch (e) { setCs('err', e.message); }
+  resolveCloud();
  });
 }
 
@@ -194,48 +220,74 @@ $('af').onsubmit = async e => {
  e.preventDefault();
  const name = $('an').value.trim(), pw = $('apw').value, key = name.toLowerCase();
  if (!name) return $('ae').textContent = 'Укажите имя или ник.';
- const h = await sha(SALT + pw);
- if (users[key]) {
-  if (users[key].h !== h) return $('ae').textContent = 'Неверный пароль для этого имени.';
- } else {
-  users[key] = {name, h, photo: await readPhoto($('ap').files[0])};
-  localStorage.setItem('bmvd_users', JSON.stringify(users));
- }
- me = key; localStorage.setItem('bmvd_session', JSON.stringify(me));
- $('af').reset(); $('ae').textContent = ''; start();
+ $('asb').disabled = true; $('ae').textContent = '';
+ try {
+  const h = await sha(SALT + pw);
+  await cloudReady;
+  let u = null;
+  if (fsdb) { try { const d = await fsdb.collection('users').doc(key).get(); if (d.exists) u = d.data(); } catch (err) { setCs('err', err.message); u = users[key] || null; } }
+  else u = users[key] || null;
+  if (u) {
+   if (u.h !== h) { $('ae').textContent = 'Это имя уже занято, а пароль не подходит.'; return; }
+  } else {
+   u = {name, h, photo: await readPhoto($('ap').files[0])};
+   if (fsdb) await fsdb.collection('users').doc(key).set(u).catch(err => setCs('err', err.message));
+  }
+  users[key] = u; localStorage.setItem('bmvd_users', JSON.stringify(users));
+  me = key; localStorage.setItem('bmvd_session', JSON.stringify(me));
+  $('af').reset(); start();
+ } finally { $('asb').disabled = false; }
 };
-$('out').onclick = () => { me = null; localStorage.removeItem('bmvd_session'); start(); };
+$('out').onclick = () => { me = null; isAdmin = false; editId = null; localStorage.removeItem('bmvd_session'); localStorage.removeItem('bmvd_admin'); start(); };
 
 /* ========= КНИГА ========= */
-const perPage = 3;
 const hl = t => { t = esc(t); if (!query) return t; const r = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); return t.replace(new RegExp('(' + esc(r) + ')', 'gi'), '<mark>$1</mark>'); };
 function filtered(){
  const q = query.toLowerCase();
- return S.words.filter(x => (tab !== 'fav' || (S.likes[x.id] || []).includes(me)) && (!letter || x.w[0].toLowerCase() === letter) && (!q || (x.w + ' ' + x.d + ' ' + (x.e || '')).toLowerCase().includes(q)))
+ return S.words.filter(x => (tab !== 'fav' || isFav(x)) && (!letter || x.w[0].toLowerCase() === letter) && (!q || (x.w + ' ' + x.d + ' ' + (x.e || '')).toLowerCase().includes(q)))
   .sort((a, b) => a.w.localeCompare(b.w, 'ru'));
 }
 function entry(x){
- const L = S.likes[x.id] || [], mine = L.includes(me);
- const names = L.map(k => users[k]?.name || k);
- const w = x.w; 
- return `<div class="entry"><h3><span class="cap">${hl(w[0])}</span>${hl(w.slice(1))}</h3>
- ${x.p ? `<div class="pos">${esc(x.p)}</div>` : ''}<p>${hl(x.d)}</p>${x.e ? `<p class="ex">«${hl(x.e)}»</p>` : ''}
- <button class="like ${mine ? 'on' : ''}" data-id="${x.id}">♥ ${L.length}<span class="tip">${names.length ? esc(names.join('\n')) : 'Пока никто не оценил'}</span></button></div>`;
+ if (isAdmin && editId === x.id) return `<div class="entry edit" data-id="${x.id}">
+  <input class="ew" maxlength="60" placeholder="Слово" value="${esc(x.w)}">
+  <input class="ep" placeholder="Часть речи" value="${esc(x.p || '')}">
+  <textarea class="ed" rows="4" placeholder="Описание (Enter — новая строка)">${esc(x.d)}</textarea>
+  <input class="ee" placeholder="Пример употребления" value="${esc(x.e || '')}">
+  <div class="row"><button class="btn sv">Сохранить</button><button class="btn alt cn">Отмена</button></div></div>`;
+ const L = S.likes[x.id] || [], mine = L.includes(myName());
+ return `<div class="entry"><h3><span class="cap">${hl(x.w[0])}</span>${hl(x.w.slice(1))}</h3>
+ ${x.p ? `<div class="pos">${esc(x.p)}</div>` : ''}<p class="d">${hl(x.d)}</p>${x.e ? `<p class="ex">«${hl(x.e)}»</p>` : ''}
+ <div class="acts"><button class="like ${mine ? 'on' : ''}" data-id="${x.id}">♥ ${L.length}<span class="tip">${L.length ? esc(L.join('\n')) : 'Пока никто не оценил'}</span></button>
+ ${isAdmin ? `<button class="mini ed-b" data-id="${x.id}" title="Править">✎</button><button class="mini dl-b" data-id="${x.id}" title="Удалить">✕</button>` : ''}</div></div>`;
 }
 function renderLetters(){
- const ls = [...new Set(S.words.filter(x => tab !== 'fav' || (S.likes[x.id] || []).includes(me)).map(x => x.w[0].toLowerCase()))].sort((a, b) => a.localeCompare(b, 'ru'));
+ const ls = [...new Set(S.words.filter(x => tab !== 'fav' || isFav(x)).map(x => x.w[0].toLowerCase()))].sort((a, b) => a.localeCompare(b, 'ru'));
  $('letters').innerHTML = `<button data-l="" class="${letter ? '' : 'on'}">Все</button>` + ls.map(l => `<button data-l="${l}" class="${letter === l ? 'on' : ''}">${l.toUpperCase()}</button>`).join('');
 }
+// раскладываем слова по страницам так, чтобы страница не прокручивалась
+function pack(list, pw, ph){
+ const m = $('meas'); m.style.width = pw + 'px'; m.innerHTML = list.map(entry).join('');
+ const pages = []; let cur = [], used = 0;
+ [...m.children].forEach((el, i) => {
+  const h = el.offsetHeight + 16;
+  if (cur.length && used + h > ph) { pages.push(cur); cur = []; used = 0; }
+  cur.push(list[i]); used += h;
+ });
+ if (cur.length) pages.push(cur);
+ m.innerHTML = ''; return pages;
+}
 function renderBook(dir){
+ if (!me) return;
  renderLetters();
- $('fc').textContent = S.words.filter(x => (S.likes[x.id] || []).includes(me)).length;
- const one = innerWidth < 700, pages = one ? 1 : 2, step = perPage * pages, list = filtered();
- const total = Math.max(1, Math.ceil(list.length / step));
- sp = Math.min(Math.max(sp, 0), total - 1);
- const part = list.slice(sp * step, sp * step + step), b = $('book');
+ $('fc').textContent = S.words.filter(isFav).length;
+ const b = $('book'), one = innerWidth < 700, np = one ? 1 : 2, list = filtered();
  b.className = 'book' + (one ? ' one' : '');
- if (!list.length) b.innerHTML = `<div class="empty" style="grid-column:1/-1">${tab === 'fav' && !query && !letter ? 'Здесь пока пусто. Нажмите ♥ под словом, чтобы добавить его в избранное.' : 'В книге нет такого слова…'}</div>`;
- else b.innerHTML = `<div class="pg l">${part.slice(0, perPage).map(entry).join('')}</div>` + (one ? '' : `<div class="pg r">${part.slice(perPage).map(entry).join('')}</div>`);
+ const pw = Math.max(200, b.clientWidth / np - 62), ph = Math.max(150, b.clientHeight - 40);
+ const pages = pack(list, pw, ph), total = Math.max(1, Math.ceil(pages.length / np));
+ sp = Math.min(Math.max(sp, 0), total - 1);
+ const cur = pages.slice(sp * np, sp * np + np);
+ if (!list.length) b.innerHTML = `<div class="empty">${tab === 'fav' && !query && !letter ? 'Здесь пока пусто. Нажмите ♥ под словом, чтобы добавить его в избранное.' : 'В книге нет такого слова…'}</div>`;
+ else b.innerHTML = `<div class="pg l">${(cur[0] || []).map(entry).join('')}</div>` + (one ? '' : `<div class="pg r">${(cur[1] || []).map(entry).join('')}</div>`);
  if (dir) { void b.offsetWidth; b.classList.add(dir); }
  $('pn').textContent = `лист ${sp + 1} из ${total}`;
  $('pv').disabled = sp === 0; $('nx').disabled = sp >= total - 1;
@@ -243,17 +295,44 @@ function renderBook(dir){
 const go = d => { sp += d; renderBook(d > 0 ? 'next' : 'prev'); };
 $('nx').onclick = () => go(1); $('pv').onclick = () => go(-1);
 addEventListener('keydown', e => { if (!me || e.target.matches('input,textarea,select')) return; if (e.key === 'ArrowRight') go(1); if (e.key === 'ArrowLeft') go(-1); });
-addEventListener('resize', () => me && renderBook());
+addEventListener('resize', () => renderBook());
+document.fonts && document.fonts.ready.then(() => renderBook());
 $('q').oninput = e => { query = e.target.value.trim(); sp = 0; renderBook(); };
 $('letters').onclick = e => { const l = e.target.dataset.l; if (l === undefined) return; letter = l; sp = 0; renderBook(); };
+$('tabs').onclick = e => {
+ const t = e.target.dataset.t; if (!t) return;
+ tab = t; sp = 0; letter = '';
+ document.querySelectorAll('#tabs button').forEach(b => b.classList.toggle('on', b.dataset.t === tab));
+ renderBook();
+};
 $('book').onclick = e => {
- const b = e.target.closest('.like'); if (!b) return;
- const id = b.dataset.id, L = S.likes[id] = S.likes[id] || [], i = L.indexOf(me);
- i < 0 ? L.push(me) : L.splice(i, 1);
- save(); renderBook();
+ const t = e.target, like = t.closest('.like'), eb = t.closest('.ed-b'), db = t.closest('.dl-b');
+ if (like) {
+  const id = like.dataset.id, n = myName(), L = S.likes[id] = S.likes[id] || [], i = L.indexOf(n);
+  i < 0 ? L.push(n) : L.splice(i, 1);
+  saveLocal();
+  if (cloud) cloud.set({likes: {[id]: i < 0 ? firebase.firestore.FieldValue.arrayUnion(n) : firebase.firestore.FieldValue.arrayRemove(n)}}, {merge: true}).catch(err => setCs('err', err.message));
+  return renderBook();
+ }
+ if (!isAdmin) return;
+ if (eb) { editId = eb.dataset.id; return renderBook(); }
+ if (db) {
+  const x = S.words.find(w => w.id === db.dataset.id);
+  if (x && confirm('Удалить слово «' + x.w + '»?')) { S.words = S.words.filter(w => w !== x); delete S.likes[x.id]; save(); renderBook(); }
+  return;
+ }
+ if (t.closest('.cn')) { editId = null; return renderBook(); }
+ if (t.closest('.sv')) {
+  const box = t.closest('.edit'), x = S.words.find(w => w.id === box.dataset.id);
+  const w = box.querySelector('.ew').value.trim(), d = box.querySelector('.ed').value.trim();
+  if (!w || !d) return alert('Заполните слово и описание.');
+  Object.assign(x, {w, p: box.querySelector('.ep').value.trim(), d, e: box.querySelector('.ee').value.trim()});
+  editId = null; save(); renderBook();
+ }
 };
 
 /* ========= АДМИНКА ========= */
+function updateAdminUI(){ $('addw').classList.toggle('hidden', !isAdmin); }
 let clicks = 0, ct;
 $('logo').onclick = async () => {
  clearTimeout(ct); ct = setTimeout(() => clicks = 0, 2500);
@@ -261,7 +340,8 @@ $('logo').onclick = async () => {
  if (!isAdmin) {
   const p = prompt('Слово тайное:');
   if (!p || await sha(SALT + p) !== ADMIN_HASH) return;
-  isAdmin = true;
+  isAdmin = true; localStorage.setItem('bmvd_admin', ADMIN_HASH);
+  updateAdminUI(); renderBook();
  }
  openAdm();
 };
@@ -269,9 +349,11 @@ let cur = null;
 function fillSel(){ $('aw').innerHTML = '<option value="">— выбрать слово —</option>' + [...S.words].sort((a, b) => a.w.localeCompare(b.w, 'ru')).map(x => `<option value="${x.id}">${esc(x.w)}</option>`).join(''); $('aw').value = cur?.id || ''; }
 function setForm(x){ cur = x; $('fw').value = x?.w || ''; $('fp').value = x?.p || ''; $('fd').value = x?.d || ''; $('fe').value = x?.e || ''; $('fer').textContent = ''; fillSel(); }
 function openAdm(){ setForm(null); $('adm').classList.remove('hidden'); }
+$('addw').onclick = openAdm;
 $('aw').onchange = e => setForm(S.words.find(x => x.id === e.target.value) || null);
 $('fn').onclick = () => setForm(null);
-$('fc').onclick = () => $('adm').classList.add('hidden');
+$('fclose').onclick = () => $('adm').classList.add('hidden');
+$('fq').onclick = () => { isAdmin = false; editId = null; localStorage.removeItem('bmvd_admin'); $('adm').classList.add('hidden'); updateAdminUI(); renderBook(); };
 $('fs').onclick = () => {
  const w = $('fw').value.trim(), d = $('fd').value.trim();
  if (!w || !d) return $('fer').textContent = 'Заполните слово и описание.';
@@ -285,20 +367,13 @@ $('fx').onclick = () => {
  save(); setForm(null); renderBook();
 };
 
-$('tabs').onclick = e => {
- const t = e.target.dataset.t; if (!t) return;
- tab = t; sp = 0;
- document.querySelectorAll('#tabs button').forEach(b => b.classList.toggle('on', b.dataset.t === tab));
- renderBook();
-};
-
 /* ========= СТАРТ ========= */
 function start(){
  const ok = me && users[me];
  $('auth').classList.toggle('hidden', !!ok); $('app').classList.toggle('hidden', !ok);
- if (!ok) { me = null; return; }
+ if (!ok) { me = null; $('adm').classList.add('hidden'); return; }
  $('mea').innerHTML = avaHTML(users[me]); $('men').textContent = users[me].name;
- renderBook();
+ updateAdminUI(); renderBook();
 }
 initCloud(); start();
 </script>
